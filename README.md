@@ -1,5 +1,7 @@
 # Cookiecutter docker image
 
+[![Build Status][badge_docker]][link_docker]
+
 This is unofficial docker image for [Cookiecutter][Cookiecutter]
 
 ![Cookiecutter](https://raw.githubusercontent.com/cookiecutter/cookiecutter/3ac078356adf5a1a72042dfe72ebfa4a9cd5ef38/logo/cookiecutter_medium.png)
@@ -29,3 +31,7 @@ $ docker run --rm -it --volume $(PWD):/workdir --volume /path/to/template:/tmp/t
 Welcome to your issues!
 
 [Cookiecutter]:https://github.com/cookiecutter/cookiecutter
+
+[badge_docker]:https://img.shields.io/docker/pulls/jetexe/cookiecutter.svg
+
+[link_docker]:https://hub.docker.com/r/jetexe/cookiecutter
