@@ -4,8 +4,6 @@ This is unofficial docker image for [Cookiecutter][Cookiecutter]
 
 ![Cookiecutter](https://raw.githubusercontent.com/cookiecutter/cookiecutter/3ac078356adf5a1a72042dfe72ebfa4a9cd5ef38/logo/cookiecutter_medium.png)
 
-
-
 ## Usage
 
 From git:
@@ -28,9 +26,6 @@ From directory:
 $ docker run --rm -it --volume $(PWD):/workdir --volume /path/to/template:/tmp/template -u $(id -u):$(id -g) jetexe/cookiecutter /tmp/template
 ```
 
-
-
 Welcome to your issues!
 
 [Cookiecutter]:https://github.com/cookiecutter/cookiecutter
-
