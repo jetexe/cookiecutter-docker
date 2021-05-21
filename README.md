@@ -15,7 +15,7 @@ From git:
 # You'll be prompted to enter values.
 # Then it'll create your Python package in the current working directory,
 # based on those values.
-$ docker run --rm -it --volume $(PWD):/workdir -u $(id -u):$(id -g) jetexe/cookiecutter https://github.com/audreyfeldroy/cookiecutter-pypackage
+$ docker run --rm -it --volume "$PWD":/workdir -u $(id -u):$(id -g) jetexe/cookiecutter https://github.com/audreyfeldroy/cookiecutter-pypackage
 ```
 
 From directory:
@@ -25,7 +25,7 @@ From directory:
 # You'll be prompted to enter values.
 # Then it'll create your Python package in the current working directory,
 # based on those values.
-$ docker run --rm -it --volume $(PWD):/workdir --volume /path/to/template:/tmp/template -u $(id -u):$(id -g) jetexe/cookiecutter /tmp/template
+$ docker run --rm -it --volume "$PWD":/workdir --volume /path/to/template:/tmp/template -u $(id -u):$(id -g) jetexe/cookiecutter /tmp/template
 ```
 
 Welcome to your issues!
