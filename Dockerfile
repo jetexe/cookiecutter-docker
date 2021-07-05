@@ -1,5 +1,5 @@
 # Python base image <https://hub.docker.com/_/python>
-FROM python:3.9.5-alpine
+FROM python:3.9.6-alpine
 
 # Cookiecutter version
 ARG COOKIECUTTER_VERSION=1.7.3
