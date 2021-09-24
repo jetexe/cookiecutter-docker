@@ -1,6 +1,7 @@
 .git
 .github
 .dockerignore
+.gitignore
 .editorconfig
 README.md
 LICENSE
