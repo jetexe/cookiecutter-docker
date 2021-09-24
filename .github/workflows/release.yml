@@ -31,5 +31,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v6,linux/arm/v7
           tags: |
-            jetexe/cookiecutter:${{ steps.slug.outputs.version }}
+            jetexe/cookiecutter:${{ steps.slug.outputs.version-major }}.${{ steps.slug.outputs.version-minor }}.${{ steps.slug.outputs.version-patch }}
+            jetexe/cookiecutter:${{ steps.slug.outputs.version-major }}.${{ steps.slug.outputs.version-minor }}
+            jetexe/cookiecutter:${{ steps.slug.outputs.version-major }}
             jetexe/cookiecutter:latest
