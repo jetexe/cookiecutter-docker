@@ -2,6 +2,15 @@
 
 version: 2
 updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "jetexe"
+    assignees:
+      - "jetexe"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
