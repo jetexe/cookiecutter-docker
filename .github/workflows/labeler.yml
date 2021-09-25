@@ -4,10 +4,9 @@ on: [pull_request_target]
 
 jobs:
   triage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/labeler@v3 # Action page: <https://github.com/actions/labeler>
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           sync-labels: true
-

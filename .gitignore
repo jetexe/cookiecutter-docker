@@ -1,0 +1,7 @@
+## IDEs
+/.vscode
+/.idea
+
+## Temp files
+/temp
+/tmp

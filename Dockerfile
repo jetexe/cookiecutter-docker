@@ -1,21 +1,21 @@
 # Python base image <https://hub.docker.com/_/python>
 FROM python:3.9.7-alpine
 
-# Cookiecutter version
-ARG COOKIECUTTER_VERSION=1.7.3
-
 # cookiecutter works with current working
 WORKDIR /workdir
 
+COPY ./requirements.txt /tmp/requirements.txt
+
 RUN set -x && \
     apk add --no-cache git && \
-    echo 'appuser:x:10001:10001::/home/appuser:/sbin/nologin' > /etc/passwd && \
-    echo 'appuser:x:10001:' > /etc/group && \
-    mkdir /.cookiecutter_replay/ /.cookiecutters/ && \
-    chmod 777 /.cookiecutter_replay /.cookiecutters && \
-    pip install cookiecutter=="$COOKIECUTTER_VERSION"
+    echo 'appuser:x:10001:10001::/tmp:/sbin/nologin' >> /etc/passwd && \
+    echo 'appuser:x:10001:' >> /etc/group && \
+    mkdir --mode=777 /.cookiecutter_replay /.cookiecutters && \
+    pip3 install --no-cache-dir --requirement /tmp/requirements.txt && \
+    cookiecutter --version && \
+    rm /tmp/requirements.txt
 
-# Try not to run the container from the root user
+# use an unprivileged user by default
 USER appuser:appuser
 
 ENTRYPOINT ["cookiecutter"]
