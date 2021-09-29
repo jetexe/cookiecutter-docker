@@ -36,9 +36,9 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          push: false
+          push: true
           platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v6,linux/arm/v7
-          tags: app:local
+          tags: localhost:5000/app:local
 
       - name: Scan image
         uses: anchore/scan-action@v3 # action page: <https://github.com/anchore/scan-action>
