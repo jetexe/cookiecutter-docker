@@ -1,5 +1,6 @@
 .git
 .github
+.venv
 .dockerignore
 .gitignore
 .editorconfig
