@@ -3,5 +3,6 @@
 /.idea
 
 ## Temp files
+/.venv
 /temp
 /tmp
