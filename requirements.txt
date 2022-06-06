@@ -1,2 +1,2 @@
 # This file is used by dependabot for keeping dependencies versions in the actual state
-cookiecutter==2.1.1
+cookiecutter==1.7.3

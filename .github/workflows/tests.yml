@@ -2,7 +2,7 @@ name: tests
 
 on:
   push:
-    branches: [master, main]
+    branches: [master, main, v1]
     paths-ignore: ['**.md']
     tags-ignore: ['**']
   pull_request:
