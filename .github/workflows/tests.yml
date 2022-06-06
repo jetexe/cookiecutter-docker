@@ -19,8 +19,7 @@ jobs:
       - name: Patch gitleaks config
         run: |
           wget -P /tmp https://raw.githubusercontent.com/zricethezav/gitleaks/master/config/gitleaks.toml
-          echo "commits = [\"e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288\"]\n" >> /tmp/gitleaks.toml
-          cat /tmp/gitleaks.toml
+          echo "commits = [\"e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288\"]" >> /tmp/gitleaks.toml
 
       - name: Check for GitLeaks
         uses: gacts/gitleaks@v1 # Action page: <https://github.com/gacts/gitleaks>
