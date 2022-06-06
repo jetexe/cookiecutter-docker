@@ -17,7 +17,7 @@ jobs:
         with: {fetch-depth: 0}
 
       - name: Check for GitLeaks
-        uses: zricethezav/gitleaks-action@v2.0.0 # Action page: <https://github.com/zricethezav/gitleaks-action>
+        uses: gacts/gitleaks@v1 # Action page: <https://github.com/gacts/gitleaks>
 
   docker-image:
     name: Build and scan the docker image
