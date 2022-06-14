@@ -55,8 +55,16 @@ jobs:
           tags: localhost:5000/app:local
 
       - name: Scan image
+        id: scan
         uses: anchore/scan-action@v3 # action page: <https://github.com/anchore/scan-action>
         with:
           image: localhost:5000/app:local
           fail-build: true
+          acs-report-enable: true
           severity-cutoff: low # negligible, low, medium, high or critical
+
+      - name: upload Anchore scan SARIF report
+        if: ${{ always() }}
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
