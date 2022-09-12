@@ -2,7 +2,7 @@ name: tests
 
 on:
   push:
-    branches: [master, main, v1]
+    branches: [v1]
     paths-ignore: ['**.md']
     tags-ignore: ['**']
   pull_request:
@@ -19,12 +19,12 @@ jobs:
       - name: Patch gitleaks config
         run: |
           wget -P /tmp https://raw.githubusercontent.com/zricethezav/gitleaks/master/config/gitleaks.toml
-          echo "commits = [\"e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288\"]" >> /tmp/gitleaks.toml
+          sed "s/\[rules\.allowlist]/[rules.allowlist]\ncommits = [\"e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288\"]/" /tmp/gitleaks.toml  > /tmp/gitleaks.patched.toml
 
       - name: Check for GitLeaks
         uses: gacts/gitleaks@v1 # Action page: <https://github.com/gacts/gitleaks>
         with:
-          config-path: /tmp/gitleaks.toml
+          config-path: /tmp/gitleaks.patched.toml
 
   docker-image:
     name: Build and scan the docker image
@@ -59,9 +59,8 @@ jobs:
         uses: anchore/scan-action@v3 # action page: <https://github.com/anchore/scan-action>
         with:
           image: localhost:5000/app:local
-          fail-build: true
           acs-report-enable: true
-          severity-cutoff: low # negligible, low, medium, high or critical
+          fail-build: false
 
       - name: upload Anchore scan SARIF report
         if: ${{ always() }}
