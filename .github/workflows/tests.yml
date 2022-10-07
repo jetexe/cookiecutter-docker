@@ -2,29 +2,32 @@ name: tests
 
 on:
   push:
-    branches: [master, main]
-    paths-ignore: ['**.md']
-    tags-ignore: ['**']
+    branches: [ master, main ]
+    paths-ignore: [ '**.md' ]
+    tags-ignore: [ '**' ]
   pull_request:
-    paths-ignore: ['**.md']
+    paths-ignore: [ '**.md' ]
 
 jobs:
   gitleaks:
-    name: Gitleaks
+    name: GitLeaks
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-        with: {fetch-depth: 0}
+      - name: Install Dasel
+        run: curl -sSLf "$(curl -sSLf https://api.github.com/repos/tomwright/dasel/releases/latest | grep browser_download_url | grep linux_amd64 | grep -v .gz | cut -d\" -f 4)" -L -o dasel && chmod +x dasel
 
-      - name: Patch gitleaks config
+      - name: Patch GitLeaks config
         run: |
           wget -P /tmp https://raw.githubusercontent.com/zricethezav/gitleaks/master/config/gitleaks.toml
-          sed "s/\[rules\.allowlist]/[rules.allowlist]\ncommits = [\"e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288\"]/" /tmp/gitleaks.toml  > /tmp/gitleaks.patched.toml
+          ./dasel put string -f /tmp/gitleaks.toml ".rules.(id=generic-api-key).allowlist.commits.[]" "e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288"
+
+      - uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
 
       - name: Check for GitLeaks
         uses: gacts/gitleaks@v1 # Action page: <https://github.com/gacts/gitleaks>
         with:
-          config-path: /tmp/gitleaks.patched.toml
+          config-path: /tmp/gitleaks.toml
 
   docker-image:
     name: Build and scan the docker image
