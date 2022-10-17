@@ -1,5 +1,5 @@
 # Python base image <https://hub.docker.com/_/python>
-FROM python:3.10.8-alpine
+FROM python:3.11.0rc2-alpine
 
 # cookiecutter works with current working
 WORKDIR /workdir
