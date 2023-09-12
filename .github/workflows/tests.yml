@@ -21,7 +21,7 @@ jobs:
           wget -P /tmp https://raw.githubusercontent.com/zricethezav/gitleaks/master/config/gitleaks.toml
           ./dasel put string -f /tmp/gitleaks.toml ".rules.(id=generic-api-key).allowlist.commits.[]" "e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288"
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
       - name: Check for GitLeaks
@@ -39,7 +39,7 @@ jobs:
           - 5000:5000
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: docker/setup-qemu-action@v2 # Action page: <https://github.com/docker/setup-qemu-action>
 
