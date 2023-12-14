@@ -1,16 +1,19 @@
 docs:
-  - '**/*.md'
-  - '**/*.MD'
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.md', '**/*.MD']
 
 .github:
-  - '.github/**/*'
+  - changed-files:
+    - any-glob-to-any-file: ['.github/**/*']
 
 CI:
-  - '.github/workflows/**/*'
-  - '.github/actions/**/*'
+  - changed-files:
+    - any-glob-to-any-file: ['.github/workflows/**/*', '.github/actions/**/*']
 
 dev:
-  - 'Dockerfile'
-  - '.gitignore'
-  - '.dockerignore'
-  - '.editorconfig'
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'Dockerfile'
+      - '.gitignore'
+      - '.dockerignore'
+      - '.editorconfig'
