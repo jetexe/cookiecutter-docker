@@ -59,7 +59,7 @@ jobs:
 
       - name: Scan image
         id: scan
-        uses: anchore/scan-action@v3 # action page: <https://github.com/anchore/scan-action>
+        uses: anchore/scan-action@v4 # action page: <https://github.com/anchore/scan-action>
         with:
           image: localhost:5000/app:local
           acs-report-enable: true
