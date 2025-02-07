@@ -1,14 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     ":disableDependencyDashboard",
     ":semanticCommitType(chore)"
   ],
-  "assignees": [
-        "jetexe"
-    ],
-    "labels": [
-        "dependencies"
-    ]
+  "assignees": ["jetexe"],
+  "labels": ["dependencies"]
 }

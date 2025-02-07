@@ -4,7 +4,7 @@ on: [pull_request_target]
 
 jobs:
   triage:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v5 # Action page: <https://github.com/actions/labeler>
         with:
