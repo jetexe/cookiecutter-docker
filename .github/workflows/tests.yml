@@ -22,7 +22,7 @@ jobs:
       - name: Patch GitLeaks config
         run: |
           wget -P /tmp https://raw.githubusercontent.com/zricethezav/gitleaks/master/config/gitleaks.toml
-          ./dasel put string -f /tmp/gitleaks.toml ".rules.(id=generic-api-key).allowlist.commits.[]" "e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288"
+          ./dasel put string -f /tmp/gitleaks.toml ".rules.(id=generic-api-key).allowlists.[].commits.[]" "e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288"
 
       - { uses: actions/checkout@v4, with: { fetch-depth: 0 } }
 
