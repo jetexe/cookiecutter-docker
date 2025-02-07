@@ -1,4 +1,7 @@
-name: tests
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+# docs: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
+name: 🧪 Tests
 
 on:
   push:
@@ -11,7 +14,7 @@ on:
 jobs:
   gitleaks:
     name: GitLeaks
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Install Dasel
         run: curl -sSLf "$(curl -sSLf https://api.github.com/repos/tomwright/dasel/releases/tags/v1.27.3 | grep browser_download_url | grep linux_amd64 | grep -v .gz | cut -d\" -f 4)" -L -o dasel && chmod +x dasel
@@ -19,19 +22,26 @@ jobs:
       - name: Patch GitLeaks config
         run: |
           wget -P /tmp https://raw.githubusercontent.com/zricethezav/gitleaks/master/config/gitleaks.toml
-          ./dasel put string -f /tmp/gitleaks.toml ".rules.(id=generic-api-key).allowlist.commits.[]" "e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288"
+          ./dasel put string -f /tmp/gitleaks.toml ".rules.(id=generic-api-key).allowlists.[].commits.[]" "e8594f63837f77f5d5b4ad21e82dfc6c9fd6b288"
 
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+      - { uses: actions/checkout@v4, with: { fetch-depth: 0 } }
 
       - name: Check for GitLeaks
         uses: gacts/gitleaks@v1 # Action page: <https://github.com/gacts/gitleaks>
         with:
           config-path: /tmp/gitleaks.toml
 
+  validate-renovate-config:
+    name: Validate Renovate Config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npx --yes --package renovate -- renovate-config-validator --strict ./.github/renovate.json
+
   docker-image:
     name: Build and scan the docker image
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     services:
       registry:
         image: registry:2

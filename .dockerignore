@@ -1,8 +1,5 @@
-.git
-.github
-.venv
-.dockerignore
-.gitignore
-.editorconfig
-README.md
-LICENSE
+## Ignore everything
+*
+
+## Except the following files and directories
+!/requirements.txt
