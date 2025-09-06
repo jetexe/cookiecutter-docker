@@ -9,7 +9,7 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/labeler@v5 # Action page: <https://github.com/actions/labeler>
+      - uses: actions/labeler@v6 # Action page: <https://github.com/actions/labeler>
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           sync-labels: true
