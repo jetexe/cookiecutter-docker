@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Python base image <https://hub.docker.com/_/python>
-FROM docker.io/library/python:3.13.7-alpine
+FROM docker.io/library/python:3.14.1-alpine
 
 # cookiecutter works with current working
 WORKDIR /workdir
